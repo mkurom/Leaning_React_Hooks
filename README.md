@@ -12,7 +12,7 @@ React16.8から追加されたHooksを学ぶ
 
 使用言語及フレームワーク
 
-・Typescript
+・Javascript
 
 ・React(Nextjs)
 
