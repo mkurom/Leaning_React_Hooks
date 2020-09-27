@@ -10,6 +10,11 @@ React16.8から追加されたHooksを学ぶ
 
 ・useContext
 
+使用言語及フレームワーク
+
+・Typescript
+
+・React(Nextjs)
 
 
 参考資料：
