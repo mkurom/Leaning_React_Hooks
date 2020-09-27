@@ -1,4 +1,4 @@
-# Leaning_React_Hooks
+# 神戸プログラミングアカデミー勉強会
 
 React16.8から追加されたHooksを学ぶ
 
