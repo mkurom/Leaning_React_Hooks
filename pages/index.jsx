@@ -1,9 +1,10 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
-import { useState, useEffect, useContext, createContext } from "react";
+import { useState, useEffect, createContext } from "react";
 import Child from './child';
 
+// Context生成
 export const Context = createContext()
 
 export default function Home() {
@@ -35,7 +36,7 @@ export default function Home() {
 
 
   // ----- useContext -----
-  // クラスコンポーネント間のバケツリレーの解消
+  // コンポーネント間のバケツリレーの解消
   // 親コンポーネントから受け取りたい子、孫コンポーネントに以下のようにコードを書く（この例ではgrandchild.jsx）
   // Contextは親からインポートする（value={{ money: 10000 }}のこと）
   // useContextの引数に親コンポーネントのContext.Providerのvalueの値を取得できる
@@ -52,6 +53,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <div>
+          
           {/* useState */}
           <button onClick={() => {
             if (word == "React Word!"){
@@ -62,10 +64,13 @@ export default function Home() {
             console.log("useState");
           }}>
           Add</button>
+
           {/* useEffect */}
           <p>{`カウント数：${count}`}</p>
           <p>{word}</p>
+
           {/* useContext */}
+          {/* Providerを使用して、子、孫コンポーネントで利用可能にしている */}
           <Context.Provider value={{ money: 10000 }}>
             <Child />
           </Context.Provider>
