@@ -11,10 +11,22 @@ export default function Home() {
   
   // ----- useState -----
   //    [変数,  関数   ] = useState(初期値);
-  // 
+  // 初期値にオブジェクト型を扱うのには注意が必要
   const [word, setWord] = useState("Hello World!");
   const [count, setCount] = useState(0);
 
+  const [test, setTest] = useState({
+    test1: 1,
+    test2: 2
+  });
+
+  const countUp = () => {
+    console.log("countUp-test", test);
+    setTest({ 
+      test1: 3,
+      // test2: 4
+    });
+  };
 
   // ----- useEffect -----
   // useEffect(関数
@@ -64,6 +76,8 @@ export default function Home() {
             console.log("useState");
           }}>
           Add</button>
+
+          <button className="buttonView" onClick={countUp}>{`ボタン`}</button>
 
           {/* useEffect */}
           <p>{`カウント数：${count}`}</p>
