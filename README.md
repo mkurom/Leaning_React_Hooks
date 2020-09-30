@@ -10,7 +10,7 @@ React16.8から追加されたHooksを学ぶ
 
 ・useContext
 
-使用言語及フレームワーク
+使用言語及びフレームワーク
 
 ・Javascript
 
