@@ -1,6 +1,9 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
+import { Button } from '@material-ui/core';
+import { TextField } from '@material-ui/core';
+
 import { useState, useEffect, createContext } from "react";
 import Child from './child';
 
@@ -14,6 +17,7 @@ export default function Home() {
   // 初期値にオブジェクト型を扱うのには注意が必要
   const [word, setWord] = useState("Hello World!");
   const [count, setCount] = useState(0);
+  const [value, setValue] = useState(1000);
 
   const [test, setTest] = useState({
     test1: 1,
@@ -22,6 +26,7 @@ export default function Home() {
 
   const countUp = () => {
     console.log("countUp-test", test);
+    // 更新時にtest2が消えている
     setTest({ 
       test1: 3,
       // test2: 4
@@ -43,8 +48,8 @@ export default function Home() {
 
   useEffect(() => {
     console.log("useEffect");
-  },[])
-  // },[count])
+  // },[])
+  },[count])
 
 
   // ----- useContext -----
@@ -65,29 +70,47 @@ export default function Home() {
 
       <main className={styles.main}>
         <div>
-          
           {/* useState */}
-          <button onClick={() => {
+          <h1>・useState</h1>
+
+          <Button variant="contained"
+          onClick={() => {
             if (word == "React Word!"){
               setWord("Hello World!");
             } else {
               setWord("React Word!");
             }
             console.log("useState");
-          }}>
-          Add</button>
+          }}>chenge word</Button>
+          <p>{word}</p>
 
-          <button className="buttonView" onClick={countUp}>{`ボタン`}</button>
+          <p>オブジェクトを扱う時の注意</p>
+          <button className="buttonView" onClick={countUp}>{`Testボタン`}</button>
 
           {/* useEffect */}
+          <h1>・useEffect</h1>
+          <Button variant="contained" color="primary" onClick={ () => {
+            // setCount(count++)
+            setCount(prevCount => prevCount + 1)
+          }}>+</Button>
+
+          <Button variant="contained" color="secondary" onClick={ () => {
+            setCount(count - 1)
+          }}>-</Button>
           <p>{`カウント数：${count}`}</p>
-          <p>{word}</p>
 
           {/* useContext */}
           {/* Providerを使用して、子、孫コンポーネントで利用可能にしている */}
-          <Context.Provider value={{ money: 10000 }}>
+          <h1>・useContext</h1>
+          <p>親コンポーネントから子コンポーネントを通さずに孫コンポーネントでvalueを使用</p>
+          <Context.Provider value={{ money: value }}>
+            {console.log("parent component")}
             <Child />
           </Context.Provider>
+          
+          <TextField id="text" type="text" value={value} onChange={(e) => {
+            setValue(e.target.value)}} />
+
         </div>
       </main>
     </div>
